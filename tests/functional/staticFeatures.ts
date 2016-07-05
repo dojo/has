@@ -14,7 +14,15 @@ function executeTest(suite: Suite, htmlTestPath: string, testFn: (result: any) =
 	return suite.remote
 		.get(require.toUrl(htmlTestPath))
 		.then(pollUntil(function() {
-			return window.hasTestResults;
+			const results = window.hasTestResults;
+			if (results) {
+				if (typeof window.DojoHasEnvironment === 'undefined') {
+					return results;
+				}
+				else {
+					throw new Error('DojoHasEnvironment not unset');
+				}
+			}
 		}, null, timeout))
 		.then(testFn, function() {
 			throw new Error('loaderTestResult was not set.');
