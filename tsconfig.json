@@ -9,11 +9,27 @@
 		"sourceMap": true,
 		"target": "es5",
 		"moduleResolution": "classic",
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"noImplicitThis": true
 	},
 	"filesGlob": [
 		"./typings/index.d.ts",
 		"./src/**/*.ts",
 		"./tests/**/*.ts"
+	],
+	"files": [
+		"./typings/index.d.ts",
+		"./src/has.ts",
+		"./src/loader.d.ts",
+		"./src/main.ts",
+		"./tests/functional/all.ts",
+		"./tests/intern-local.ts",
+		"./tests/intern-saucelabs.ts",
+		"./tests/intern.ts",
+		"./tests/support/Reporter.ts",
+		"./tests/support/util.ts",
+		"./tests/unit/all.ts",
+		"./tests/unit/has.ts",
+		"./tests/unit/main.ts"
 	]
 }
