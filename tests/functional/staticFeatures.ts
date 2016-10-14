@@ -23,7 +23,7 @@ function executeTest(suite: Suite, htmlTestPath: string, testFn: (result: any) =
 					throw new Error('DojoHasEnvironment not unset');
 				}
 			}
-		}, null, timeout))
+		}, undefined, timeout))
 		.then(testFn, function() {
 			throw new Error('loaderTestResult was not set.');
 		});
@@ -32,13 +32,13 @@ function executeTest(suite: Suite, htmlTestPath: string, testFn: (result: any) =
 registerSuite({
 	name: 'staticFeatures',
 
-	'provided as an object'() {
+	'provided as an object'(this: any) {
 		return executeTest(this, './staticFeaturesObject.html', function(results: any) {
 			assert.deepEqual(results, { foo: 1, bar: 'bar', baz: false }, 'Results should be the asserted static features');
 		});
 	},
 
-	'provided as a function'() {
+	'provided as a function'(this: any) {
 		return executeTest(this, './staticFeaturesFunction.html', function(results: any) {
 			assert.deepEqual(results, { foo: 1, bar: 'bar', baz: false }, 'Results should be the asserted static features');
 		});
