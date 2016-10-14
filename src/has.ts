@@ -45,14 +45,30 @@ declare global {
 /**
  * A reference to the global scope (`window` in a browser, `global` in NodeJS)
  */
-const global: any = Function('return this')();
+const globalScope = (function (): any {
+	/* istanbul ignore else */
+	if (typeof window !== 'undefined') {
+		// Browsers
+		return window;
+	}
+	else if (typeof global !== 'undefined') {
+		// Node
+		return global;
+	}
+	else if (typeof self !== 'undefined') {
+		// Web workers
+		return self;
+	}
+	/* istanbul ignore next */
+	return {};
+})();
 
 /* Grab the staticFeatures if there are available */
-const { staticFeatures }: DojoHasEnvironment = global.DojoHasEnvironment || {};
+const { staticFeatures }: DojoHasEnvironment = globalScope.DojoHasEnvironment || {};
 
 /* Cleaning up the DojoHasEnviornment */
-if ('DojoHasEnvironment' in global) {
-	delete global.DojoHasEnvironment;
+if ('DojoHasEnvironment' in globalScope) {
+	delete globalScope.DojoHasEnvironment;
 }
 
 /**
@@ -71,7 +87,7 @@ function isStaticFeatureFunction(value: any): value is (() => StaticHasFeatures)
  */
 const staticCache: StaticHasFeatures = staticFeatures
 	? isStaticFeatureFunction(staticFeatures)
-		? staticFeatures.apply(global)
+		? staticFeatures.apply(globalScope)
 		: staticFeatures
 	: {}; /* Providing an empty cache, if none was in the environment
 

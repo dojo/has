@@ -1,1 +1,1 @@
-import './staticFeatures';
+export const removeThis = 1;
