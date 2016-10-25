@@ -331,13 +331,13 @@ registerSuite({
 		},
 		'can override run-time defined features'(this: any) {
 			const dfd = this.async();
-			require.undef('src/has');
+			(<any> require).undef('src/has');
 			globalScope.DojoHasEnvironment = {
 				staticFeatures: {
 					debug: false
 				}
 			};
-			require([ 'src/has' ], dfd.callback((mod: { default: typeof has, add: typeof hasAdd }) => {
+			(<any> require)([ 'src/has' ], dfd.callback((mod: { default: typeof has, add: typeof hasAdd }) => {
 				const h = mod.default;
 				const hAdd = mod.add;
 				assert.isFalse(h('debug'), 'Static features override "add()"');
