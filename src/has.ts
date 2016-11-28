@@ -15,8 +15,8 @@ export type FeatureTestThenable = {
 	then<U>(onFulfilled?: (value: FeatureTestResult) => U | FeatureTestThenable, onRejected?: (error: any) => void): FeatureTestThenable;
 };
 
-function isFeatureTestThenable(o: any): o is FeatureTestThenable {
-	return o && o.then;
+function isFeatureTestThenable(value: any): value is FeatureTestThenable {
+	return value && value.then;
 }
 
 /**
@@ -33,7 +33,7 @@ export const testFunctions: { [feature: string]: FeatureTest } = {};
  * A cache of unresolved thenables (probably promises)
  * @type {{}}
  */
-export const testThenables: { [feature: string]: FeatureTestThenable} = {};
+const testThenables: { [feature: string]: FeatureTestThenable} = {};
 
 export interface StaticHasFeatures {
 	[ feature: string ]: FeatureTestResult;
