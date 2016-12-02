@@ -153,7 +153,7 @@ export function normalize(resourceId: string, normalize: (moduleId: string) => s
  * @param feature the name of the feature
  */
 export function exists(feature: string): boolean {
-	let normalizedFeature = feature.toLowerCase();
+	const normalizedFeature = feature.toLowerCase();
 
 	return Boolean(normalizedFeature in staticCache || normalizedFeature in testCache || testFunctions[normalizedFeature]);
 }
@@ -174,7 +174,7 @@ export function exists(feature: string): boolean {
  * @param overwrite if an existing value should be overwritten. Defaults to false.
  */
 export function add(feature: string, value: FeatureTest | FeatureTestResult, overwrite: boolean = false): void {
-	let normalizedFeature = feature.toLowerCase();
+	const normalizedFeature = feature.toLowerCase();
 
 	if (exists(normalizedFeature) && !overwrite && !(normalizedFeature in staticCache)) {
 		throw new TypeError(`Feature "${feature}" exists and overwrite not true.`);
@@ -197,7 +197,7 @@ export function add(feature: string, value: FeatureTest | FeatureTestResult, ove
 export default function has(feature: string): FeatureTestResult {
 	let result: FeatureTestResult;
 
-	let normalizedFeature: string = feature.toLowerCase();
+	const normalizedFeature = feature.toLowerCase();
 
 	if (normalizedFeature in staticCache) {
 		result = staticCache[normalizedFeature];
