@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"declaration": false,
+		"declaration": true,
 		"module": "umd",
 		"moduleResolution": "node",
 		"noImplicitAny": true,
