@@ -153,13 +153,13 @@ registerSuite('has', {
 			'works with thenable'() {
 				const dfd = this.async();
 
-				const thenable = {
-					then(resolve: (_: number) => void) {
+				const thenable: PromiseLike<number> = {
+					then(resolve?: ((_: number) => void) | null) {
 						setTimeout(() => {
-							resolve(5);
+							resolve!(5);
 						}, 10);
 
-						return thenable;
+						return <any> thenable;
 					}
 				};
 
@@ -174,13 +174,13 @@ registerSuite('has', {
 			'failed thenable removes itself from cache'() {
 				const dfd = this.async();
 
-				const thenable = {
-					then(_: (_: number) => void, reject: (_: Error) => void) {
+				const thenable: PromiseLike<number> = {
+					then(_?: ((_: number) => void) | null, reject?: ((_: Error) => void) | null) {
 						setTimeout(() => {
-							reject(new Error('test error'));
+							reject!(new Error('test error'));
 						}, 10);
 
-						return thenable;
+						return <any> thenable;
 					}
 				};
 
@@ -248,13 +248,13 @@ registerSuite('has', {
 			'exists with thenabale'() {
 				const dfd = this.async();
 
-				const thenable = {
-					then(resolve: (_: number) => void) {
+				const thenable: PromiseLike<number> = {
+					then(resolve?: ((_: number) => void) | null) {
 						setTimeout(() => {
-							resolve(5);
+							resolve!(5);
 						}, 10);
 
-						return thenable;
+						return <any> thenable;
 					}
 				};
 
