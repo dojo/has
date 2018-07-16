@@ -1,3 +1,9 @@
+## The `@dojo/has` repository has been deprecated and merged into [`@dojo/framework`](https://github.com/dojo/framework)
+
+You can read more about this change on our [blog](https://dojo.io/blog/). We will continue providing patches for `has` and other Dojo 2 repositories, and a [CLI migration tool](https://github.com/dojo/cli-upgrade) is available to aid in migrating projects from v2 to v3.
+
+***
+
 # @dojo/has
 
 [![Build Status](https://travis-ci.org/dojo/has.svg?branch=master)](https://travis-ci.org/dojo/has)
@@ -185,11 +191,6 @@ window.DojoHasEnvironment = {
 
 This function will be run once when the module is loaded and the values returned from the function will be used as the
 static features.
-
-## How do I contribute?
-
-We appreciate your interest!  Please see the [Dojo 2 Meta Repository](https://github.com/dojo/meta#readme) for the
-Contributing Guidelines.
 
 ### Code Style
 
